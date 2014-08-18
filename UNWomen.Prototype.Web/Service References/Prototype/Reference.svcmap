@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="39c27a5d-f1fd-482f-b8ba-17358082af1e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:57681/MovieManager.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MovieManager.disco" MetadataType="Disco" ID="29710e78-c2ea-4abf-9cd6-e3e3de4f7ab2" SourceId="1" SourceUrl="http://localhost:57681/MovieManager.svc?disco" />
+    <MetadataFile FileName="MovieManager.xsd" MetadataType="Schema" ID="baf05be7-659f-4403-bdd3-28cabc59b7db" SourceId="1" SourceUrl="http://localhost:57681/MovieManager.svc?xsd=xsd2" />
+    <MetadataFile FileName="MovieManager1.xsd" MetadataType="Schema" ID="efea6cf5-0511-4b29-915d-00f19705ee3a" SourceId="1" SourceUrl="http://localhost:57681/MovieManager.svc?xsd=xsd0" />
+    <MetadataFile FileName="MovieManager.wsdl" MetadataType="Wsdl" ID="b80726ec-1d44-4ffe-936d-2893dd66c956" SourceId="1" SourceUrl="http://localhost:57681/MovieManager.svc?wsdl" />
+    <MetadataFile FileName="MovieManager2.xsd" MetadataType="Schema" ID="b5ef19b0-e774-4450-81dd-096322b4f1d2" SourceId="1" SourceUrl="http://localhost:57681/MovieManager.svc?xsd=xsd3" />
+    <MetadataFile FileName="MovieManager3.xsd" MetadataType="Schema" ID="4cbfe7c8-19cb-470b-b0b1-c95fd9ccc72c" SourceId="1" SourceUrl="http://localhost:57681/MovieManager.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using UNWomen.Prototype.Data;
 using UNWomen.Prototype.Entities;
 
-namespace UNWomen.Prototype.DomainServices.Tests
+namespace UNWomen.Prototype.DomainServices.Tests.Utils
 {
     public class TestDbContext : IPrototypeContext
     {

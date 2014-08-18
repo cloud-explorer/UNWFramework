@@ -14,7 +14,14 @@ using UNWomen.Prototype.Entities;
 
 namespace UNWomen.Prototype.Data
 {
-    public class PrototypeContext : DbContext, IDataContext
+    public interface IPrototypeContext : IDataContext
+    {
+        DbSet<Actor> Actors { get; set; }
+        DbSet<MovieActorMapping> MovieActorMappings { get; set; }
+        DbSet<Movie> Movies { get; set; }
+    }
+
+    public class PrototypeContext : DbContext, IPrototypeContext
     {
         #region C'tors
 

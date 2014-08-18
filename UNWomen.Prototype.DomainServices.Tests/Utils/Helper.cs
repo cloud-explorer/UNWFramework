@@ -19,6 +19,13 @@ namespace UNWomen.Prototype.DomainServices.Tests.Utils
             return foo;
         }
 
+        public static IEnumerable<T> CreateAutoFilledList<T>(this Fixture fixture, int count = 10)
+            where T : class
+        {
+            IEnumerable<T> foo = fixture.CreateMany<T>();
+            return foo;
+        }
+
         #region Class Methods
 
         public static Mock<List<T>> CreateListMoq<T>(this Fixture fixture, int count = 10)

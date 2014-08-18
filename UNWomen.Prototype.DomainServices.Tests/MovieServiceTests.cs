@@ -61,7 +61,7 @@ namespace UNWomen.Prototype.DomainServices.Tests
 
             //Act
             service.DeleteMovie(movieToBeDeleted);
-
+            
             //Assert
             mockSet.Verify(m => m.Remove(It.IsAny<Movie>()), Times.Once());
             _mockContext.Verify(m => m.SaveChanges(), Times.Once());
@@ -96,7 +96,8 @@ namespace UNWomen.Prototype.DomainServices.Tests
             Mock<DbSet<Movie>> mockSet = _fixture.CreateManyMoqDbSet<Movie>(5);
             Movie movieToBeUpdated = mockSet.Object.OrderBy(r => Guid.NewGuid()).First();
             int movieId = movieToBeUpdated.MovieId;
-            movieToBeUpdated.Title = "Changed title of movie";
+            const string title = "Changed title of movie";
+            movieToBeUpdated.Title = title;
             
             _mockContext.Setup(c => c.Movies)
                 .Returns(mockSet.Object);
@@ -104,10 +105,13 @@ namespace UNWomen.Prototype.DomainServices.Tests
 
             //Act
             service.UpdateMovie(movieToBeUpdated);
-
+            Movie movie = mockSet.Object.FirstOrDefault(m => m.MovieId == movieId);
+            
             //Assert
             mockSet.Verify(m => m.Attach(It.IsAny<Movie>()), Times.Once());
             _mockContext.Verify(m => m.SaveChanges(), Times.Once());
+            Assert.IsNotNull(movie);
+            Assert.AreEqual(movie.Title, title);
         }
 
         #endregion

@@ -25,9 +25,6 @@ namespace UNWomen.Prototype.API
         {
             container.AddFacility<WcfFacility>(f => f.CloseTimeout = TimeSpan.Zero)
                 .Register(
-                    Component.For<IPrototypeContext>()
-                        .ImplementedBy<PrototypeContext>()
-                        .LifestylePerWebRequest(),
                     Component.For<PrototypeContext>()
                         .ImplementedBy<PrototypeContext>()
                         .LifestylePerWebRequest(),

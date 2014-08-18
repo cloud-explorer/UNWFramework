@@ -1,7 +1,6 @@
 ﻿#region
 
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,29 +32,13 @@ namespace UNWomen.Prototype.DomainServices.Tests
         #region Instance Methods
 
         [TestMethod]
-        public void GetMovie_gets_the_correct_movie()
-        {
-            //Arrange
-            Mock<DbSet<Movie>> mockSet = _fixture.CreateManyMoqDbSet<Movie>(5);
-            _mockContext.Setup(c => c.Movies).Returns(mockSet.Object);
-            int movieId = mockSet.Object.OrderBy(r => Guid.NewGuid()).First().MovieId;
-            var service = new MovieService(_mockContext.Object);
-
-            //Act
-            Movie movie = service.GetMovie(movieId);
-
-            //Assert
-            Assert.AreEqual(movieId, movie.MovieId);
-        }
-
-        [TestMethod]
         public void CreateMovie_calls_dbset_add_and_saves_changes_to_context()
         {
             //Arrange
             Movie movieToBeAdded = _fixture.CreateAutoFilledObject<Movie>();
             Mock<DbSet<Movie>> mockSet = _fixture.CreateManyMoqDbSet<Movie>(5);
             _mockContext.Setup(c => c.Movies)
-                        .Returns(mockSet.Object);
+                .Returns(mockSet.Object);
             var service = new MovieService(_mockContext.Object);
 
             //Act
@@ -73,7 +56,7 @@ namespace UNWomen.Prototype.DomainServices.Tests
             Mock<DbSet<Movie>> mockSet = _fixture.CreateManyMoqDbSet<Movie>(5);
             Movie movieToBeDeleted = mockSet.Object.OrderBy(r => Guid.NewGuid()).First();
             _mockContext.Setup(c => c.Movies)
-                        .Returns(mockSet.Object);
+                .Returns(mockSet.Object);
             var service = new MovieService(_mockContext.Object);
 
             //Act
@@ -85,20 +68,45 @@ namespace UNWomen.Prototype.DomainServices.Tests
         }
 
         [TestMethod]
-        public void UpdateMovie_calls_dbset_remove_and_saves_changes_to_context()
+        public void GetMovie_gets_the_correct_movie()
         {
             //Arrange
             Mock<DbSet<Movie>> mockSet = _fixture.CreateManyMoqDbSet<Movie>(5);
-            Movie movieToBeDeleted = mockSet.Object.OrderBy(r => Guid.NewGuid()).First();
-            _mockContext.Setup(c => c.Movies)
-                        .Returns(mockSet.Object);
+            _mockContext.Setup(c => c.Movies).Returns(mockSet.Object);
+            int movieId = mockSet.Object.OrderBy(r => Guid.NewGuid()).First().MovieId;
             var service = new MovieService(_mockContext.Object);
 
             //Act
-            service.DeleteMovie(movieToBeDeleted);
+            Movie movie = service.GetMovie(movieId);
 
             //Assert
-            mockSet.Verify(m => m.Remove(It.IsAny<Movie>()), Times.Once());
+            Assert.AreEqual(movieId, movie.MovieId);
+        }
+
+        [TestInitialize]
+        public void TestSetup()
+        {
+            _mockContext = new Mock<PrototypeContext>();
+        }
+
+        [TestMethod]
+        public void UpdateMovie_calls_dbset_attach_and_saves_changes_to_context()
+        {
+            //Arrange
+            Mock<DbSet<Movie>> mockSet = _fixture.CreateManyMoqDbSet<Movie>(5);
+            Movie movieToBeUpdated = mockSet.Object.OrderBy(r => Guid.NewGuid()).First();
+            int movieId = movieToBeUpdated.MovieId;
+            movieToBeUpdated.Title = "Changed title of movie";
+            
+            _mockContext.Setup(c => c.Movies)
+                .Returns(mockSet.Object);
+            var service = new MovieService(_mockContext.Object);
+
+            //Act
+            service.UpdateMovie(movieToBeUpdated);
+
+            //Assert
+            mockSet.Verify(m => m.Attach(It.IsAny<Movie>()), Times.Once());
             _mockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
 
@@ -110,12 +118,6 @@ namespace UNWomen.Prototype.DomainServices.Tests
         public static void SetUp(TestContext context)
         {
             _fixture.Customize(new IgnoreVirtualMembersCustomization());
-        }
-
-        [TestInitialize]
-        public void TestSetup()
-        {
-            _mockContext = new Mock<PrototypeContext>();
         }
 
         #endregion

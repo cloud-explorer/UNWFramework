@@ -3,13 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UNWomen.Prototype.Web.Prototype;
 
 namespace UNWomen.Prototype.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IMovieManager _movieManager;
+
+        public HomeController(IMovieManager movieManager)
+        {
+            _movieManager = movieManager;
+        }
+
         public ActionResult Index()
         {
+            
             return View();
         }
 

@@ -33,6 +33,19 @@ namespace UNWomen.Prototype.API
             return ExecuteFaultHandledOperation(
                 () => _movieService.GetMovie(movieId)
                 );
+
+            //return ExecuteFaultHandledOperation(
+            //    () =>
+            //    {
+            //        Movie movie = _movieService.GetMovie(movieId);
+            //        return new Movie
+            //        {
+            //            Title = movie.Title,
+            //            MovieId = movie.MovieId,
+            //            ImdbId = movie.ImdbId
+            //        };
+            //    }
+            //    );
         }
 
         public void AddMovie(Movie movie)

@@ -12,8 +12,8 @@ namespace UNWomen.Prototype.Entities
     public class Movie : EntityBase
     {
         #region Instance Properties
-
-        public virtual ICollection<MovieActorMapping> MovieActors { get; set; }
+        [IgnoreDataMember]
+        public virtual IEnumerable<MovieActorMapping> MovieActors { get; set; }
 
         [DataMember]
         public string ImdbId { get; set; }
